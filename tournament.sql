@@ -24,6 +24,7 @@ CREATE table matches (
 
 CREATE table records(
 	id integer references players(id),
-	played integer NOT NULL,
-	won integer NOT NULL
+	name text NOT NULL,
+	wins integer NOT NULL,
+	played integer NOT NULL
 	);

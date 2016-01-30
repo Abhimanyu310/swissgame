@@ -24,6 +24,7 @@ def deletePlayers():
     """Remove all the player records from the database."""
     db = connect()
     c = db.cursor()
+    c.execute("delete from records")
     c.execute("delete from players")
     db.commit()
     db.close()
@@ -49,7 +50,12 @@ def registerPlayer(name):
     """
     db = connect()
     c = db.cursor()
-    c.execute("insert into players(name) values(%s)", (name,))
+    c.execute("insert into players(name) values(%s)", (name,)) 
+    db.commit()
+    c.execute("select * from players where name = %s", (name,))
+    result = c.fetchall()
+    this_id = result[(len(result) - 1)][0]
+    c.execute("insert into records(id,name,wins,played) values(%s,%s,0,0)", (this_id, name, ))
     db.commit()
     db.close()
 
