@@ -68,7 +68,7 @@ def playerStandings():
     """
     db = connect()
     c =db.cursor()
-    c.execute("select * from records order by wins desc")
+    c.execute("select * from standings")
     result = c.fetchall()
     db.commit()
     db.close()
@@ -107,7 +107,7 @@ def swissPairings():
     """
     db = connect()
     c =db.cursor()    
-    c.execute("select id,name,wins from records order by wins desc")
+    c.execute("select * from standings")
     standings = c.fetchall();
     for i in range(0, len(standings), 2):
         c.execute("insert into pairings(id1,name1,id2,name2) values(%s,%s,%s,%s)", 

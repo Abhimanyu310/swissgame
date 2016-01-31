@@ -37,3 +37,6 @@ CREATE table pairings(
 	id2 integer references players(id),
 	name2 text NOT NULL
 	);
+
+CREATE view standings as 
+	select * from records order by wins desc;
