@@ -92,6 +92,7 @@ def reportMatch(winner, loser):
     c =db.cursor()
     c.execute("update records set wins=records.wins+1,played=records.played+1 where id=%s", (winner,))
     c.execute("update records set played=records.played+1 where id=%s", (loser,))
+    c.execute("insert into matches(id1,id2,winner) values (%s,%s,%s)", (winner, loser, winner,))
     db.commit()
     db.close()
  
@@ -111,5 +112,5 @@ def swissPairings():
         id2: the second player's unique id
         name2: the second player's name
     """
-
+    #select id,wins from records order by wins desc
 

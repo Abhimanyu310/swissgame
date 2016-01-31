@@ -19,7 +19,8 @@ CREATE table players (
 CREATE table matches (
 	id serial primary key,
 	id1 integer references players(id),
-	id2 integer references players(id)
+	id2 integer references players(id),
+	winner integer NOT NULL
 	);
 
 CREATE table records(
