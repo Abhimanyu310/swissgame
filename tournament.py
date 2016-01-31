@@ -25,6 +25,7 @@ def deletePlayers():
     db = connect()
     c = db.cursor()
     c.execute("delete from records")
+    c.execute("delete from pairings")
     c.execute("delete from players")
     db.commit()
     db.close()
@@ -106,7 +107,8 @@ def swissPairings():
         name2: the second player's name
     """
     db = connect()
-    c =db.cursor()    
+    c =db.cursor()
+    c.execute("delete from pairings")
     c.execute("select * from standings")
     standings = c.fetchall();
     for i in range(0, len(standings), 2):
