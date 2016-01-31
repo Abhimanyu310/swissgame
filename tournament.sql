@@ -29,3 +29,11 @@ CREATE table records(
 	wins integer NOT NULL,
 	played integer NOT NULL
 	);
+
+CREATE table pairings(
+	id serial primary key,
+	id1 integer references players(id),
+	name1 text NOT NULL,
+	id2 integer references players(id),
+	name2 text NOT NULL
+	);

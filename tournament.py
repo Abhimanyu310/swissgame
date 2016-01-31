@@ -112,5 +112,15 @@ def swissPairings():
         id2: the second player's unique id
         name2: the second player's name
     """
-    #select id,wins from records order by wins desc
-
+    db = connect()
+    c =db.cursor()    
+    c.execute("select id,name,wins from records order by wins desc")
+    standings = c.fetchall();
+    for i in range(0, len(standings), 2):
+        c.execute("insert into pairings(id1,name1,id2,name2) values(%s,%s,%s,%s)", 
+            (standings[i][0], standings[i][1], standings[i+1][0], standings[i+1][1],)) 
+    db.commit()
+    c.execute("select id1,name1,id2,name2 from pairings")
+    pairs = c.fetchall()
+    db.close()
+    return pairs
