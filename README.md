@@ -21,5 +21,5 @@
 
 #### To run the code:
 
-##### Load the tournament.sql file into postgreSQL. This will create the schema
-Then run the tournament_test.py file, and you will find success printed.
+###### Load the tournament.sql file into postgreSQL. This will create the schema
+###### Then run the tournament_test.py file, and you will find success printed.
